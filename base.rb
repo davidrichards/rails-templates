@@ -19,7 +19,7 @@
   rake("gems:install", :sudo => true)
   
 # Use Workflow as a single-file solution
-  runy "curl -L http://github.com/ryan-allen/workflow/raw/master/lib/workflow.rb > lib/workflow.rb"
+  run "curl -L http://github.com/ryan-allen/workflow/raw/master/lib/workflow.rb > lib/workflow.rb"
 
 # Generate testing environment
   generate "rspec"
