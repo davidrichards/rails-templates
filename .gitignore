@@ -1,0 +1,15 @@
+.DS_Store
+log/*.log
+log/**/*
+tmp/**/*
+tmp/*
+db/*.sqlite3
+config/database.yml
+config/mysql.database.yml
+models.dot
+db/*sql
+db/development_structure.sql
+db/schema.rb
+noodle*
+tmp_*
+public/files/**/*
