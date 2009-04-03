@@ -23,6 +23,7 @@
   plugin 'rspec-rails', :git => 'git://github.com/dchelimsky/rspec-rails.git'
   plugin 'exception_notifier', :git => 'git://github.com/rails/exception_notification.git'
   run "haml --rails ."
+  run "mkdir -p public/stylesheets/sass"
 
 # Bring gems local
   rake("gems:install", :sudo => true)
@@ -42,6 +43,20 @@
 # Save the example database config
   run "cp config/database.yml config/example_database.yml"
 
+# Generate an information controller for the standard static stuff.
+  generate "rspec_controller", "info"
+  
+  file "app/views/info/index.html.erb", ''
+  file "app/views/info/about.html.erb", ''
+  file "app/views/info/terms.html.erb", ''
+  file "app/views/info/contact.html.erb", ''
+
+# Setup a root route
+  route "map.root :controller => 'info'"
+
+# Run any migrations
+  rake "db:migrate"
+  
 # Init Git
   file ".gitignore",
 %q{
