@@ -132,7 +132,7 @@ end
   file "app/controllers/user_sessions_controller.rb",
 %q{class UserSessionsController < ApplicationController
   
-  before_filter :require_no_user, :only => [:new, :create]
+  # before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => :destroy
   
   def new
@@ -161,7 +161,7 @@ end
   file "app/controllers/users_controller.rb",
 %q{class UsersController < ApplicationController
   
-  before_filter :require_no_user, :only => [:new, :create]
+  # before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:show, :edit, :update]
   
   def new
@@ -237,8 +237,8 @@ file "app/views/user_sessions/new.html.erb",
 
 <% form_for @user_session, :url => user_session_path do |f| %>
   <%= f.error_messages %>
-  <%= f.label :login %><br />
-  <%= f.text_field :login %><br />
+  <%= f.label :email %><br />
+  <%= f.text_field :email %><br />
   <br />
   <%= f.label :password %><br />
   <%= f.password_field :password %><br />
@@ -252,8 +252,8 @@ file "app/views/user_sessions/new.html.erb",
 run "mkdir -p app/views/users"
 
 file "app/views/users/_form.html.erb",
-%q{<%= form.label :login %><br />
-<%= form.text_field :login %><br />
+%q{<%= form.label :email %><br />
+<%= form.text_field :email %><br />
 <br />
 <%= form.label :password, form.object.new_record? ? nil : "Change password" %><br />
 <%= form.password_field :password %><br />
@@ -287,8 +287,8 @@ file "app/views/users/new.html.erb",
 
 file "app/views/users/show.html.erb",
 %q{<p>
-  <b>Login:</b>
-  <%=h @user.login %>
+  <b>Email:</b>
+  <%=h @user.email %>
 </p>
 
 <p>
@@ -327,12 +327,13 @@ file "app/views/users/show.html.erb",
   
 # Create an authentication module
 file "lib/authentication.rb",
-%q{
+%q{module Authentication
 
-module Authentication
-  filter_parameter_logging :password, :password_confirmation
-  helper_method :current_user_session, :current_user
-
+  def self.included(base)
+    base.send(:filter_parameter_logging, :password, :password_confirmation)
+    base.send(:helper_method, :current_user_session, :current_user)
+  end
+  
   private
     def current_user_session
       return @current_user_session if defined?(@current_user_session)
