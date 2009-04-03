@@ -320,10 +320,10 @@ file "app/views/users/show.html.erb",
   <b>Current login ip:</b>
   <%=h @user.current_login_ip %>
 </p>
-}
 
 
 <%= link_to 'Edit', edit_account_path %>
+}
   
 # Create an authentication module
 file "lib/authentication.rb",
