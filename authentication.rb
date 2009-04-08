@@ -60,7 +60,7 @@ end
 }
 
 # Generate the user session
-generate "session", "user_session"
+generate "session user_session"
 
 # Generate the user
 file "db/migrate/#{Time.now.strftime('%Y%m%d%H%M%S_create_users.rb')}",
@@ -263,7 +263,7 @@ file "app/views/users/_form.html.erb",
 <br />
 }
 
-file "app/views/users/exit.html.erb",
+file "app/views/users/edit.html.erb",
 %q{<h1>Edit My Account</h1>
 
 <% form_for @user, :url => account_path do |f| %>
@@ -334,7 +334,7 @@ file "lib/authentication.rb",
     base.send(:helper_method, :current_user_session, :current_user)
   end
   
-  private
+  # private
     def current_user_session
       return @current_user_session if defined?(@current_user_session)
       @current_user_session = UserSession.find
@@ -375,8 +375,8 @@ file "lib/authentication.rb",
 end
 }
 
-  # Adjust the applications controller
-file "app/controllers/applications_controller.rb",
+  # Adjust the application controller
+file "app/controllers/application_controller.rb",
 %q{
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
@@ -402,4 +402,3 @@ route "map.register '/register', :controller => 'users', :action => 'new'"
 route "map.signup '/signup', :controller => 'users', :action => 'new'"
 route "map.login  '/login', :controller => 'user_sessions', :action => 'new'"
 route "map.logout '/logout', :controller => 'user_sessions', :action => 'destroy'"
-

@@ -1,11 +1,9 @@
 # TODO:
-# Root route
-# registration routes
 # reset password
-# registration/login views
 # basic template (possibly a purchased one)
 # email integration, configuration
 # break this into chunks
+# acts_as_taggable_on
 
 # Delete unnecessary files
   run "rm README"
@@ -44,7 +42,7 @@
   run "cp config/database.yml config/example_database.yml"
 
 # Generate an information controller for the standard static stuff.
-  generate "rspec_controller", "info"
+  generate "controller info"
   
   file "app/views/info/index.html.erb", ''
   file "app/views/info/about.html.erb", ''
