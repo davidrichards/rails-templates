@@ -111,7 +111,7 @@ describe User do
     @valid_attributes = {
       :email => "user@example.com",
       :password => "password",
-      :confirm_password => "password",
+      :password_confirmation => "password",
       :persistence_token => "value for persistence_token",
       :single_access_token => "value for single_access_token",
       :perishable_token => "value for perishable_token"

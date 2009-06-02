@@ -20,6 +20,7 @@
   plugin 'rspec',  :git => 'git://github.com/dchelimsky/rspec.git'
   plugin 'rspec-rails', :git => 'git://github.com/dchelimsky/rspec-rails.git'
   plugin 'exception_notifier', :git => 'git://github.com/rails/exception_notification.git'
+  plugin 'acts-as-taggable-on', :git => 'git://github.com/mbleigh/acts-as-taggable-on.git'
   run "haml --rails ."
   run "mkdir -p public/stylesheets/sass"
 
@@ -27,7 +28,8 @@
   rake("gems:install", :sudo => true)
   
 # Use Workflow as a single-file solution
-  run "curl -L http://github.com/ryan-allen/workflow/raw/master/lib/workflow.rb > lib/workflow.rb"
+  file "lib/workflow.rb", File.read(File.join(File.dirname(__FILE__), 'workflow.rb'))
+  # run "curl -L http://github.com/ryan-allen/workflow/raw/master/lib/workflow.rb > lib/workflow.rb"
 
 # Generate testing environment
   generate "rspec"
