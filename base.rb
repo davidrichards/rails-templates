@@ -40,6 +40,11 @@
     load_template "http://github.com/davidrichards/rails-templates/raw/master/authentication.rb"
   end
 
+# Bring Compass into the application
+  run "gem sources --add http://gems.github.com/"
+  gem 'chriseppstein-compass'
+  run "compass --rails -f blueprint ."
+
 # Save the example database config
   run "cp config/database.yml config/example_database.yml"
 
