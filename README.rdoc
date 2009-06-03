@@ -8,3 +8,8 @@ There is a function that I also borrowed from Ryan that makes this more useful. 
     shift 2
     rails $appname -m http://github.com/davidrichards/rails-templates/raw/master/$template.rb $@
   }
+
+
+== TODO
+
+  * Get better Haml support from the beginning to support the Compass stuff.
