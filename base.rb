@@ -28,7 +28,7 @@
   rake("gems:install", :sudo => true)
   
 # Use Workflow as a single-file solution
-  file "lib/workflow.rb", File.read(File.join(File.dirname(__FILE__), 'workflow.rb'))
+  run "curl -L http://github.com/davidrichards/rails-templates/raw/master/workflow.rb > lib/workflow.rb"
   # run "curl -L http://github.com/ryan-allen/workflow/raw/master/lib/workflow.rb > lib/workflow.rb"
 
 # Generate testing environment
